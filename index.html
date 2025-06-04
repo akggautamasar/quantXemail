@@ -1,133 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuantXemail - Send Emails Beautifully</title>
-    <!-- Google Fonts: Inter for a modern, clean look -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Phosphor Icons for elegant icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/dist/phosphor.js"></script>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Link to external CSS file (conceptually style.css) -->
-    <!-- In a real project, you would save the CSS provided in 'quantxemail-css-v2' as style.css and link it like this: -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <!-- Main heading for the application -->
-        <h1 class="font-extrabold text-center">QuantXemail</h1>
-        <!-- Tagline for the application -->
-        <p class="text-center">Your seamless email sending solution.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>quantx-email-burst</title>
+    <meta name="description" content="Lovable Generated Project" />
+    <meta name="author" content="Lovable" />
 
-        <!-- Email sending form -->
-        <form id="emailForm" class="space-y-8"> <!-- Increased vertical spacing -->
-            <!-- Recipient Email input field -->
-            <div>
-                <label for="to" class="block text-sm font-medium mb-2">Recipient Email:</label>
-                <input type="email" id="to" name="to" placeholder="e.g., recipient@example.com" required>
-            </div>
+    <meta property="og:title" content="quantx-email-burst" />
+    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
-            <!-- Subject input field -->
-            <div>
-                <label for="subject" class="block text-sm font-medium mb-2">Subject:</label>
-                <input type="text" id="subject" name="subject" placeholder="e.g., Important Update Regarding Your Account" required>
-            </div>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  </head>
 
-            <!-- Message textarea -->
-            <div>
-                <label for="message" class="block text-sm font-medium mb-2">Message:</label>
-                <textarea id="message" name="message" rows="9" placeholder="Write your email message here..." required></textarea>
-            </div>
-
-            <!-- Send Email button with loading spinner and icon -->
-            <button type="submit" class="w-full" id="sendButton">
-                <i class="ph ph-paper-plane text-2xl"></i> <!-- Phosphor Icon for send -->
-                <span id="buttonText">Send Email</span>
-                <div id="spinner" class="spinner"></div>
-            </button>
-        </form>
-
-        <!-- Div to display response messages (success/error) -->
-        <div id="responseMessage" class="message-box hidden"></div>
-    </div>
-
-    <script>
-        // Define the Vercel function endpoint. This should be relative to your site's root.
-        // For example, if your function is in `api/send-email.js`, this path is `/api/send-email`.
-        const VERCEL_FUNCTION_URL = '/api/send-email';
-
-        // Get references to DOM elements
-        const emailForm = document.getElementById('emailForm');
-        const responseMessageDiv = document.getElementById('responseMessage');
-        const sendButton = document.getElementById('sendButton');
-        const buttonText = document.getElementById('buttonText');
-        const spinner = document.getElementById('spinner');
-
-        // Add event listener for form submission
-        emailForm.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Prevent the default form submission behavior (page reload)
-
-            // Show loading state: disable button, change text, show spinner
-            sendButton.disabled = true;
-            buttonText.textContent = 'Sending...';
-            spinner.style.display = 'block';
-
-            // Get values from input fields
-            const to = document.getElementById('to').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-
-            // Clear any previous response messages and hide the message box
-            responseMessageDiv.classList.add('hidden');
-            responseMessageDiv.textContent = '';
-            responseMessageDiv.classList.remove('success', 'error');
-
-            try {
-                // Send a POST request to the Vercel function
-                const response = await fetch(VERCEL_FUNCTION_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json' // Specify content type as JSON
-                    },
-                    body: JSON.stringify({ // Convert JavaScript object to JSON string
-                        to: to,
-                        subject: subject,
-                        message: message
-                    })
-                });
-
-                // Parse the JSON response from the server
-                const data = await response.json();
-
-                // Check if the response was successful (HTTP status 2xx)
-                if (response.ok) {
-                    // Display success message
-                    responseMessageDiv.classList.remove('hidden');
-                    responseMessageDiv.classList.add('success');
-                    responseMessageDiv.textContent = 'Email sent successfully! ID: ' + data.id;
-                    emailForm.reset(); // Clear the form fields on success
-                } else {
-                    // Display error message
-                    responseMessageDiv.classList.remove('hidden');
-                    responseMessageDiv.classList.add('error');
-                    responseMessageDiv.textContent = 'Failed to send email: ' + (data.message || 'Unknown error occurred.');
-                    console.error('Vercel Function Error:', data); // Log detailed error to console
-                }
-            } catch (error) {
-                // Handle network errors or other fetch-related issues
-                responseMessageDiv.classList.remove('hidden');
-                responseMessageDiv.classList.add('error');
-                responseMessageDiv.textContent = 'An error occurred: ' + error.message + '. Please check your network connection.';
-                console.error('Network or Fetch Error:', error); // Log detailed error to console
-            } finally {
-                // Reset button state regardless of success or failure
-                sendButton.disabled = false;
-                buttonText.textContent = 'Send Email';
-                spinner.style.display = 'none';
-            }
-        });
-    </script>
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
