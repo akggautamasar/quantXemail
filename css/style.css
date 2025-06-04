@@ -1,0 +1,243 @@
+/* style.css */
+
+/* Custom styles for enhanced aesthetics and responsiveness */
+body {
+    font-family: 'Inter', sans-serif;
+    /* A very soft, subtle radial gradient for depth and warmth */
+    background: radial-gradient(circle at top left, #f8f9fa, #e9ecef);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    margin: 0;
+    padding: 2.5rem; /* Generous padding for smaller screens */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+    color: #343a40; /* Darker default text color for better contrast */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.container {
+    max-width: 750px; /* Even wider container for a more expansive feel */
+    width: 100%; /* Full width on smaller screens */
+    padding: 4rem; /* Even more generous padding inside the container */
+    background-color: #ffffff;
+    border-radius: 2rem; /* Significantly more rounded corners for a softer look */
+    /* Deeper, softer shadow with a subtle inner glow effect */
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(222, 226, 230, 0.6); /* Very subtle, almost invisible border */
+    box-sizing: border-box;
+    animation: fadeInSlideUp 1s ease-out forwards; /* Fade-in and slight slide up animation */
+    position: relative; /* Needed for potential pseudo-elements or background patterns */
+    overflow: hidden; /* Ensure nothing spills out of rounded corners */
+}
+
+/* Subtle background pattern for visual interest */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml,%3Csvg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23f8f9fa" fill-opacity="0.4" fill-rule="evenodd"%3E%3Cpath d="M5 0h1L0 6V5zM6 5v1H0V0z"/%3E%3C/g%3E%3C/svg%3E');
+    opacity: 0.8; /* Very subtle */
+    pointer-events: none; /* Allow clicks through */
+    z-index: 0;
+}
+
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(50px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+h1 {
+    color: #212529; /* Deep charcoal for headings */
+    font-weight: 800; /* Extra bold */
+    letter-spacing: -0.05em; /* Tighter letter spacing for impact */
+    font-size: 3.8rem; /* Even larger heading */
+    margin-bottom: 0.5rem; /* Reduced margin for closer tagline */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05); /* Subtle text shadow */
+}
+
+p {
+    color: #6c757d; /* Muted gray for tagline */
+    font-size: 1.3rem; /* Larger tagline */
+    font-weight: 300; /* Lighter weight for tagline */
+    margin-bottom: 3rem; /* More space below tagline */
+}
+
+label {
+    color: #495057; /* Slightly darker label color */
+    font-weight: 600; /* Semi-bold for labels */
+    font-size: 1.05rem; /* Slightly larger labels */
+}
+
+input, textarea {
+    border: 1px solid #dee2e6; /* Softer, lighter border */
+    border-radius: 1rem; /* Consistent rounded corners */
+    padding: 1.2rem 1.6rem; /* More generous padding */
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1.15rem; /* Slightly larger font size for readability */
+    /* Smooth transitions for interactive elements */
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    background-color: #fcfdfe; /* Very light background for inputs */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Subtle inner shadow */
+}
+input:focus, textarea:focus {
+    border-color: #6f42c1; /* Deeper purple border on focus */
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 0 6px rgba(111, 66, 193, 0.25); /* More prominent purple glow on focus */
+    background-color: #ffffff; /* White background on focus */
+}
+button {
+    /* Gradient background for button with a more sophisticated purple tone */
+    background: linear-gradient(45deg, #6f42c1, #8a2be2); /* Darker purple to vibrant violet */
+    color: #ffffff;
+    font-weight: 700; /* Bold text */
+    padding: 1.3rem 2.8rem; /* Ample padding for clickability */
+    border-radius: 1.25rem; /* More rounded button corners */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth hover and active effects */
+    border: none; /* Remove default button border */
+    display: flex; /* Enable flexbox for centering content */
+    align-items: center;
+    justify-content: center;
+    gap: 1rem; /* More space between text and spinner/icon */
+    /* Subtle shadow for button */
+    box-shadow: 0 12px 30px rgba(111, 66, 193, 0.4);
+    font-size: 1.25rem; /* Larger button text */
+    letter-spacing: 0.02em; /* Slight letter spacing for button text */
+}
+button:hover:not(:disabled) { /* Apply hover only when not disabled */
+    background: linear-gradient(45deg, #5c35a8, #7322c7); /* Darker gradient on hover */
+    transform: translateY(-5px) scale(1.02); /* More pronounced lift and scale effect */
+    box-shadow: 0 18px 45px rgba(111, 66, 193, 0.55); /* More prominent shadow on hover */
+}
+button:active:not(:disabled) { /* Apply active only when not disabled */
+    transform: translateY(0) scale(0.98); /* Reset on click and slight press effect */
+    box-shadow: 0 8px 20px rgba(111, 66, 193, 0.35);
+}
+button:disabled {
+    background: #e9ecef; /* Lighter gray out when disabled */
+    color: #adb5bd;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+.message-box {
+    padding: 1.8rem; /* More padding */
+    border-radius: 1rem;
+    margin-top: 3rem; /* More space above message */
+    font-weight: 600; /* Semi-bold */
+    text-align: center;
+    font-size: 1.1rem;
+    word-break: break-word; /* Ensure long messages wrap */
+    line-height: 1.7; /* Better line spacing */
+    animation: slideInUp 0.6s ease-out forwards; /* Animation for message box */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); /* Subtle shadow for message box */
+}
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.message-box.success {
+    background-color: #d4edda; /* Soft green */
+    color: #28a745; /* Vibrant green text */
+    border: 1px solid #c3e6cb; /* Green border */
+}
+.message-box.error {
+    background-color: #f8d7da; /* Soft red */
+    color: #dc3545; /* Vibrant red text */
+    border: 1px solid #f5c6cb; /* Red border */
+}
+/* Spinner animation */
+.spinner {
+    border: 5px solid rgba(255, 255, 255, 0.7); /* Thicker, softer spinner border */
+    border-top: 5px solid #ffffff;
+    border-radius: 50%;
+    width: 36px; /* Larger spinner */
+    height: 36px;
+    animation: spin 0.5s linear infinite; /* Faster spin */
+    display: none; /* Hidden by default */
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 1.5rem;
+    }
+    .container {
+        padding: 3rem; /* Adjust padding on tablets */
+        margin: 1rem; /* Add margin to prevent sticking to edges */
+        border-radius: 1.5rem;
+    }
+    h1 {
+        font-size: 3rem; /* Adjust heading size */
+    }
+    p {
+        font-size: 1.1rem;
+        margin-bottom: 2.5rem;
+    }
+    label {
+        font-size: 1rem;
+    }
+    input, textarea, button {
+        font-size: 1.05rem; /* Slightly smaller font for inputs/buttons */
+        padding: 1.1rem 1.4rem;
+        border-radius: 0.875rem;
+    }
+    button {
+        gap: 0.75rem;
+        padding: 1.1rem 2rem;
+    }
+    .message-box {
+        padding: 1.4rem;
+        font-size: 1rem;
+    }
+    .spinner {
+        width: 30px;
+        height: 30px;
+    }
+}
+@media (max-width: 480px) {
+    body {
+        padding: 1rem;
+    }
+    .container {
+        padding: 2rem; /* Further reduce padding on small phones */
+        margin: 0.5rem;
+        border-radius: 1rem;
+    }
+    h1 {
+        font-size: 2.5rem; /* Smaller heading for very small screens */
+        letter-spacing: -0.03em;
+    }
+    p {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+    }
+    label {
+        font-size: 0.9rem;
+    }
+    input, textarea, button {
+        font-size: 0.95rem;
+        padding: 0.9rem 1.2rem;
+        border-radius: 0.75rem;
+    }
+    button {
+        padding: 1rem 1.5rem;
+    }
+    .message-box {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    .spinner {
+        width: 24px;
+        height: 24px;
+    }
+}
